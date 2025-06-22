@@ -1,9 +1,14 @@
 import streamlit as st
 from PIL import Image
 import base64
+import os
 
 # ---- PAGE CONFIG ----
-st.set_page_config(page_title="Sanele Mabhedula | Profile", page_icon=":bar_chart:", layout="wide")
+st.set_page_config(
+    page_title="Sanele Mabhedula | Profile",
+    page_icon=":bar_chart:",
+    layout="wide"
+)
 
 # ---- COLOR SCHEME ----
 PRIMARY = "#1f77b4"
@@ -18,7 +23,6 @@ LIGHT_TEXT = "#212B36"
 DARK_TEXT = "#F6FAFB"
 
 def get_mode():
-    # Streamlit's theme detection is limited; fallback to dark
     return st.get_option("theme.base") or "dark"
 
 mode = get_mode().lower()
@@ -65,9 +69,9 @@ st.markdown(
     .profile-header {{
         display: flex;
         flex-direction: row;
-        align-items: center;
-        gap: 3vw;
-        margin-bottom: 12px;
+        align-items: flex-start;
+        gap: 4vw;
+        margin-bottom: 16px;
         flex-wrap: wrap;
     }}
     .profile-img {{
@@ -79,24 +83,26 @@ st.markdown(
         box-shadow: 0 4px 12px rgba(48, 57, 80, 0.11);
         background: #fff;
         margin-bottom: 10px;
+        margin-top: 6px;
+        display: block;
     }}
     .main-title {{
-        font-size: min(7vw, 36px);
+        font-size: min(7vw, 40px);
         font-weight: bold;
         color: {HEADER};
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         margin-top: 0;
     }}
     .subtitle {{
-        font-size: min(4vw, 19px);
+        font-size: min(4vw, 20px);
         color: {SUBTITLE};
-        margin-bottom: 7px;
+        margin-bottom: 10px;
         font-weight: 600;
     }}
     .location {{
-        font-size: min(3.5vw, 16px);
+        font-size: min(3.5vw, 17px);
         color: {ACCENT};
-        margin-bottom: 11px;
+        margin-bottom: 12px;
         font-weight: 500;
     }}
     .contact-btn {{
@@ -104,14 +110,14 @@ st.markdown(
         color: {BUTTON_COLOR} !important;
         border: 2px solid {BUTTON_BORDER};
         border-radius: 5px;
-        padding: 9px 26px;
-        font-size: min(4vw, 17px);
+        padding: 11px 32px;
+        font-size: min(4vw, 19px);
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         text-decoration: none;
         transition: background 0.2s, color 0.2s;
         display: inline-block;
-        margin-top: 8px;
+        margin-top: 10px;
         box-shadow: 0 2px 6px rgba(31,119,180,0.13);
     }}
     .contact-btn:hover {{
@@ -126,19 +132,19 @@ st.markdown(
         margin-right: 7px;
     }}
     .contact-info {{
-        font-size: min(3.8vw, 16.5px);
+        font-size: min(3.8vw, 17px);
         color: {TEXT};
         margin-bottom: 12px;
         margin-top: 4px;
     }}
     .section-title {{
         color: {HEADER};
-        font-size: min(5vw, 22px);
+        font-size: min(5vw, 23px);
         font-weight: 700;
         margin-top: 22px;
     }}
     .about-text, .skills-text {{
-        font-size: min(4vw, 17px);
+        font-size: min(4vw, 18px);
         color: {TEXT};
         margin-bottom: 0.9em;
     }}
@@ -152,17 +158,6 @@ st.markdown(
         border-radius: 10px;
         border-left: 5px solid {ACCENT};
         font-weight: 500;
-    }}
-    @media (max-width: 700px) {{
-        .main-content {{
-            padding: 3vw 2vw 2vw 2vw;
-            max-width: 99vw;
-        }}
-        .profile-header {{
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-start;
-        }}
     }}
     </style>
     """,
@@ -211,15 +206,6 @@ with col2:
     )
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ---- DATA QUOTE ----
-st.markdown(
-    f"""
-    <div class="quote">
-        "Without data, you're just another person with an opinion." – W. Edwards Deming
-    </div>
-    """, unsafe_allow_html=True
-)
-
 # ---- ABOUT ME ----
 st.markdown('<div class="section-title">About Me</div>', unsafe_allow_html=True)
 st.markdown(
@@ -228,7 +214,51 @@ st.markdown(
     I’m Sanele, a passionate and purpose-driven data science student in training.<br>
     I help individuals, small businesses, NGOs, and community organizations understand their data — not just to collect it, but to use it for better decisions.<br><br>
     Whether it’s showing trends through dashboards, spotting problems early through analysis, or finding answers through data storytelling, I bring curiosity, empathy, and problem-solving to the table. My goal is simple: help people move with confidence, backed by insights.<br><br>
+    I believe every organization is unique, so I specialize in <b>customizing solutions to fit your exact needs</b>. If you have a vision or special requirements, I’m always excited to build something that works for you.<br><br>
     I am currently studying <b>Applied Data Science</b> at <b>WorldQuant University</b> and <b>Economics & Management</b> at <b>UNISA</b>, while building real-world projects that matter — from interactive dashboards to language-based mental health tools.
+    </div>
+    """, unsafe_allow_html=True
+)
+
+# ---- DEMO VIDEO SECTION: SMALLER & ASIDE USING COLUMNS ----
+video_path = "demo.mp4"
+youtube_link = ""  # e.g., "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+
+if os.path.exists(video_path) or youtube_link:
+    st.markdown('<div class="section-title">Demo Video</div>', unsafe_allow_html=True)
+    vid_col, txt_col = st.columns([1, 4])
+    with vid_col:
+        st.video(video_path if os.path.exists(video_path) else youtube_link)
+    with txt_col:
+        st.markdown(
+            """
+            <div style="font-size:18px; font-weight:600; margin-bottom:0.5em;">
+                Getting honest feedback is hard.<br>
+                And making sense of it? Even harder.
+            </div>
+            <div style="font-size:16px; margin-bottom:0.5em;">
+                Imagine seeing every comment, every rating, every trend—all in one place.<br><br>
+                My dashboard makes it easy: clear visuals, powerful insights, and simple tools to help you turn opinions into action.<br><br>
+                <b>What you'll see in this demo:</b>
+                <ul>
+                    <li>Instantly view your average rating, feedback trends, and recent comments</li>
+                    <li>Filter results, export detailed reports, and track what’s working</li>
+                    <li>Collect new feedback with a simple link or QR code—any device, any time</li>
+                    <li>See your true impact and make smarter decisions, faster</li>
+                </ul>
+                <b>This is just a glimpse!</b> There’s so much more behind the scenes, and I can <b>custom-build features and dashboards based on your unique needs and interests</b>.<br><br>
+                If you have an idea or want something special, let’s chat — I’m always up for building what matters to you.<br><br>
+                Ready to discover what people really think? <b>Click play</b> and see how simple understanding your impact can be!
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+# ---- DATA QUOTE ----
+st.markdown(
+    f"""
+    <div class="quote">
+        "Without data, you're just another person with an opinion." – W. Edwards Deming
     </div>
     """, unsafe_allow_html=True
 )
