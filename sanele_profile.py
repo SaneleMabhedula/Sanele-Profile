@@ -221,7 +221,7 @@ st.markdown(
 )
 
 # ---- DEMO VIDEO SECTION: SMALLER & ASIDE USING COLUMNS ----
-gdrive_video_url = "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
+gdrive_video_url = "https://drive.google.com/file/d/10MHrx6g3t9q-CVF23BR3cRhpc2MQeqny/view?usp=sharing"
 
 st.markdown('<div class="section-title">Demo Video</div>', unsafe_allow_html=True)
 vid_col, txt_col = st.columns([1, 4])
