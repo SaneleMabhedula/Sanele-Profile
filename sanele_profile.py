@@ -269,7 +269,7 @@ st.markdown(
     """
     <div class="skills-text">
     <ul>
-        <li><b>Data Analysis:</b> Python (Pandas, NumPy), Excel, SQL</li>
+        <li><b>Data Analysis:</b> Python (Pandas, NumPy)</li>
         <li><b>Dashboards & Reporting:</b> Streamlit</li>
         <li><b>Web Apps:</b> Streamlit (multi-page, user-authentication, CSV-based apps)</li>
         <li><b>Machine Learning:</b> Currently learning classification, regression, and NLP techniques</li>
