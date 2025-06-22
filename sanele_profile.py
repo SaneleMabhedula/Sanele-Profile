@@ -10,42 +10,22 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---- COLOR SCHEME ----
+# ---- DARK COLOR SCHEME (NO WHITE!) ----
 PRIMARY = "#1f77b4"
 ACCENT = "#39C1C8"
-LIGHT_BG = "#F6FAFB"
-DARK_BG = "#141A22"
-WHITE = "#ffffff"
-BLACK = "#121212"
-DARK_PANEL = "#202837"
-LIGHT_PANEL = "#ffffff"
-LIGHT_TEXT = "#212B36"
+DARK_BG = "#181c24"
+DARK_PANEL = "#232834"
 DARK_TEXT = "#F6FAFB"
+CARD_BG = "#232834"
+BUTTON_BG = "#232834"
+BUTTON_COLOR = ACCENT
+BUTTON_BORDER = ACCENT
 
-def get_mode():
-    return st.get_option("theme.base") or "dark"
-
-mode = get_mode().lower()
-if "light" in mode:
-    BG = LIGHT_BG
-    PANEL = LIGHT_PANEL
-    TEXT = LIGHT_TEXT
-    SUBTITLE = PRIMARY
-    HEADER = PRIMARY
-    CARD_BG = "#EAF3FA"
-    BUTTON_BG = WHITE
-    BUTTON_COLOR = PRIMARY
-    BUTTON_BORDER = PRIMARY
-else:
-    BG = DARK_BG
-    PANEL = DARK_PANEL
-    TEXT = DARK_TEXT
-    SUBTITLE = ACCENT
-    HEADER = ACCENT
-    CARD_BG = "#1f2733"
-    BUTTON_BG = WHITE
-    BUTTON_COLOR = PRIMARY
-    BUTTON_BORDER = PRIMARY
+BG = DARK_BG
+PANEL = DARK_PANEL
+TEXT = DARK_TEXT
+SUBTITLE = ACCENT
+HEADER = ACCENT
 
 # ---- CUSTOM CSS ----
 st.markdown(
@@ -53,24 +33,22 @@ st.markdown(
     <style>
     html, body, .stApp {{
         background-color: {BG} !important;
-        margin: 0;
-        padding: 0;
     }}
     .main-content {{
         background: {PANEL};
         border-radius: 18px;
-        box-shadow: 0 4px 28px rgba(31,119,180,0.13);
-        padding: 3vw 4vw 2vw 4vw;
+        box-shadow: 0 4px 28px rgba(31,119,180,0.18);
+        padding: 2vw 2vw 1vw 2vw;
         margin: auto;
-        max-width: 900px;
-        margin-top: 3vw;
-        margin-bottom: 3vw;
+        max-width: 1400px;
+        margin-top: 2vw;
+        margin-bottom: 2vw;
     }}
     .profile-header {{
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        gap: 4vw;
+        gap: 3vw;
         margin-bottom: 16px;
         flex-wrap: wrap;
     }}
@@ -80,8 +58,8 @@ st.markdown(
         width: 160px;
         height: 160px;
         object-fit: cover;
-        box-shadow: 0 4px 12px rgba(48, 57, 80, 0.11);
-        background: #fff;
+        box-shadow: 0 4px 12px rgba(48, 57, 80, 0.14);
+        background: #232834;
         margin-bottom: 10px;
         margin-top: 6px;
         display: block;
@@ -139,7 +117,7 @@ st.markdown(
     }}
     .section-title {{
         color: {HEADER};
-        font-size: min(5vw, 23px);
+        font-size: min(5vw, 27px);
         font-weight: 700;
         margin-top: 22px;
     }}
@@ -220,37 +198,37 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# ---- DEMO VIDEO SECTION: SMALLER & ASIDE USING COLUMNS ----
-gdrive_video_url = "https://drive.google.com/file/d/10MHrx6g3t9q-CVF23BR3cRhpc2MQeqny/view?usp=sharing"
-
+# ---- DEMO VIDEO SECTION: SIDE-BY-SIDE, BIGGER, DARK ----
 st.markdown('<div class="section-title">Demo Video</div>', unsafe_allow_html=True)
-vid_col, txt_col = st.columns([1, 4])
+vid_col, txt_col = st.columns([3, 2], gap="large")
 with vid_col:
-    st.video(gdrive_video_url)
-    with txt_col:
-        st.markdown(
-            """
-            <div style="font-size:18px; font-weight:600; margin-bottom:0.5em;">
-                Getting honest feedback is hard.<br>
-                And making sense of it? Even harder.
-            </div>
-            <div style="font-size:16px; margin-bottom:0.5em;">
-                Imagine seeing every comment, every rating, every trend—all in one place.<br><br>
-                My dashboard makes it easy: clear visuals, powerful insights, and simple tools to help you turn opinions into action.<br><br>
-                <b>What you'll see in this demo:</b>
-                <ul>
-                    <li>Instantly view your average rating, feedback trends, and recent comments</li>
-                    <li>Filter results, export detailed reports, and track what’s working</li>
-                    <li>Collect new feedback with a simple link or QR code—any device, any time</li>
-                    <li>See your true impact and make smarter decisions, faster</li>
-                </ul>
-                <b>This is just a glimpse!</b> There’s so much more behind the scenes, and I can <b>custom-build features and dashboards based on your unique needs and interests</b>.<br><br>
-                If you have an idea or want something special, let’s chat — I’m always up for building what matters to you.<br><br>
-                Ready to discover what people really think? <b>Click play</b> and see how simple understanding your impact can be!
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    # Make Streamlit video as large as possible in a wide column.
+    # This is the best you can get for a YouTube embed in Streamlit!
+    st.video("https://www.youtube.com/watch?v=bHSHSpr2Gto")
+with txt_col:
+    st.markdown(
+        """
+        <div style="font-size:18px; font-weight:600; margin-bottom:0.5em; color:#F6FAFB;">
+            Getting honest feedback is hard.<br>
+            And making sense of it? Even harder.
+        </div>
+        <div style="font-size:16px; margin-bottom:0.5em; color:#F6FAFB;">
+            Imagine seeing every comment, every rating, every trend—all in one place.<br><br>
+            My dashboard makes it easy: clear visuals, powerful insights, and simple tools to help you turn opinions into action.<br><br>
+            <b>What you'll see in this demo:</b>
+            <ul>
+                <li>Instantly view your average rating, feedback trends, and recent comments</li>
+                <li>Filter results, export detailed reports, and track what’s working</li>
+                <li>Collect new feedback with a simple link or QR code—any device, any time</li>
+                <li>See your true impact and make smarter decisions, faster</li>
+            </ul>
+            <b>This is just a glimpse!</b> There’s so much more behind the scenes, and I can <b>custom-build features and dashboards based on your unique needs and interests</b>.<br><br>
+            If you have an idea or want something special, let’s chat — I’m always up for building what matters to you.<br><br>
+            Ready to discover what people really think? <b>Click play</b> and see how simple understanding your impact can be!
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ---- DATA QUOTE ----
 st.markdown(
@@ -283,7 +261,7 @@ st.markdown('</div>', unsafe_allow_html=True)  # end main-content
 # ---- FOOTER ----
 st.markdown(
     f"""
-    <div style="text-align:center; color:{SUBTITLE if 'light' in mode else ACCENT}; margin-top:36px; font-size:14px;">
+    <div style="text-align:center; color:{SUBTITLE}; margin-top:36px; font-size:14px;">
         &copy; 2025 Sanele Mabhedula | Data-driven decisions for a smarter world.
     </div>
     """, unsafe_allow_html=True
