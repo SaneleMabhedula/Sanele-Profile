@@ -221,14 +221,12 @@ st.markdown(
 )
 
 # ---- DEMO VIDEO SECTION: SMALLER & ASIDE USING COLUMNS ----
-video_path = "demo.mp4"
-youtube_link = ""  # e.g., "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+gdrive_video_url = "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
 
-if os.path.exists(video_path) or youtube_link:
-    st.markdown('<div class="section-title">Demo Video</div>', unsafe_allow_html=True)
-    vid_col, txt_col = st.columns([1, 4])
-    with vid_col:
-        st.video(video_path if os.path.exists(video_path) else youtube_link)
+st.markdown('<div class="section-title">Demo Video</div>', unsafe_allow_html=True)
+vid_col, txt_col = st.columns([1, 4])
+with vid_col:
+    st.video(gdrive_video_url)
     with txt_col:
         st.markdown(
             """
