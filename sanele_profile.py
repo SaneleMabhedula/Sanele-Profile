@@ -198,13 +198,12 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# ---- DEMO VIDEO SECTION: SIDE-BY-SIDE, BIGGER, DARK ----
+# ---- DEMO VIDEO SECTION: SIDE-BY-SIDE, SMALLER, DARK ----
 st.markdown('<div class="section-title">Demo Video</div>', unsafe_allow_html=True)
-vid_col, txt_col = st.columns([3, 2], gap="large")
+vid_col, txt_col = st.columns([2, 3], gap="large")
 with vid_col:
-    # Make Streamlit video as large as possible in a wide column.
-    # This is the best you can get for a YouTube embed in Streamlit!
-    st.video("https://www.youtube.com/watch?v=bHSHSpr2Gto")
+    # Reduced video column width for a smaller video that aligns with text
+    st.video("https://youtu.be/HSQ3hl0jTJ0")
 with txt_col:
     st.markdown(
         """
