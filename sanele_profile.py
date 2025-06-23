@@ -146,18 +146,18 @@ st.markdown(
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 # ---- HEADER & PROFILE ----
-st.markdown('<div class="profile-header">', unsafe_allow_html=True)
+st.markdown('<div class="professor-header">', unsafe_allow_html=True)
 col1, col2 = st.columns([1, 3], gap="large")
 
 with col1:
     try:
-        image = Image.open("profile.jpg")
+        image = Image.open("professor.jpg")
         st.markdown(
-            f'<img src="data:image/jpeg;base64,{base64.b64encode(open("profile.jpg", "rb").read()).decode()}" class="profile-img"/>',
+            f'<img src="data:image/jpeg;base64,{base64.b64encode(open("professor.jpg", "rb").read()).decode()}" class="professor-img"/>',
             unsafe_allow_html=True
         )
     except Exception:
-        st.info("Add your image as profile.jpg in this directory for best appearance.")
+        st.info("Add your image as professor.jpg in this directory for best appearance.")
 
 with col2:
     st.markdown(f'<div class="main-title">Sanele Mabhedula</div>', unsafe_allow_html=True)
